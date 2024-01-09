@@ -11,6 +11,7 @@
                 <div class="card h-100" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{$project->title}}</h5>
+                        <p>{{optional($project->type)->name}}</p>
     
                         <p class="card-text">Descrizione: {{$project->description}}</p>
                         <p class="card-text">Immagine: {{$project->img}}</p>
