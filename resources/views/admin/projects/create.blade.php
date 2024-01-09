@@ -15,6 +15,13 @@
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" class="form-control" name="title" id="title" placeholder="titolo" value="{{ old('title') }}">
             </div>
+
+            <select name="type_id" class="form-control" id="type_id">
+                <option>Seleziona una categoria</option>
+                @foreach($types as $type)
+                  <option @selected( old('type_id') == $type->id ) value="{{ $type->id }}">{{ $type->name }}</option>
+                @endforeach
+            </select>
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control" name="description" id="description" rows="3" placeholder="descrizione" >{{ old('description') }} </textarea>
