@@ -12,6 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
+            // aggiumgiamo campo type_id
+            $table->unsignedBigInteger('type_id')->nullable()->after('id');
+            // aggiungiamo il vincolo della relazione
+            $table->foreign('type_id')->references('id')->on('types')
+            ->onDelete('set null')->onUpdate('cascade');
             
         });
     }
@@ -22,7 +27,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            // rimuovere il vincolo della relazione
+            // $table->dropForeign('projects_type_id_foreign');
+            $table->dropForeign('type_id');
+            // droppa la colonna type_id
+            $table->dropColumn('type_id');
         });
     }
 };
